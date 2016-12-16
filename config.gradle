@@ -54,6 +54,10 @@ ext{
 
             utils               :"com.code19.library:library:0.1.1",
 
+            freshlayout         :"com.lcodecorex:tkrefreshlayout:1.0.4",
+
+            efficientadapter    :"com.skocken:efficientadapter:2.1.1",
+
     ]
 
 }
