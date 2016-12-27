@@ -13,7 +13,7 @@ ext{
 
     def daggerVersion = "2.1"
     def retrofitVersion = "2.1.0"
-    def supportVersion = "25.0.1"
+    def supportVersion = "25.1.0"
     def rxBindingVersion = "0.4.0"
     def rxLifecycle = "0.8.0"
     def broilSupport = "1.0.2"
@@ -30,12 +30,6 @@ ext{
             //rx
             rxjava              : "io.reactivex:rxjava:1.1.6",
             rxandroid           : "io.reactivex:rxandroid:1.2.1",
-
-            butterknife         : "com.jakewharton:butterknife:8.4.0",
-            butterknifeAP       : "com.jakewharton:butterknife-compiler:8.4.0",
-
-            dagger              : "com.google.dagger:dagger:2.5",
-            daggerAP            : "com.google.dagger:dagger-compiler:2.5",
 
             gson                : "com.google.code.gson:gson:2.8.0",
 
@@ -57,6 +51,12 @@ ext{
             freshlayout         :"com.lcodecorex:tkrefreshlayout:1.0.4",
 
             efficientadapter    :"com.skocken:efficientadapter:2.1.1",
+
+            //https://github.com/czy1121/loadinglayout
+            loadinglayout       :"com.github.czy1121:loadinglayout:1.0.1",
+
+            //https://github.com/stfalcon-studio/FrescoImageViewer
+            frescoimageviewer   :"com.github.stfalcon:frescoimageviewer:0.4.0",
 
     ]
 

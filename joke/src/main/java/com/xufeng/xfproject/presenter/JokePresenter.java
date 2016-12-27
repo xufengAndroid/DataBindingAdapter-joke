@@ -23,7 +23,7 @@ public class JokePresenter implements JokeContract.Presenter {
 
     private int mPage = 1;
 
-    public JokePresenter(@NonNull JokeRepository jokeRepository,@NonNull JokeContract.View tasksView) {
+    public JokePresenter(@NonNull JokeRepository jokeRepository, @NonNull JokeContract.View tasksView) {
         this.mTasksView = Preconditions.checkNotNull(tasksView);
         this.mJokeRepository = Preconditions.checkNotNull(jokeRepository);
         mTasksView.setPresenter(this);
@@ -39,18 +39,18 @@ public class JokePresenter implements JokeContract.Presenter {
     @Override
     public void loadFirstPage() {
         mPage=1;
-        mJokeRepository.getJokeList(mPage)
+        mJokeRepository.getJokeContentText(mPage,20,JokeRepository.APIKEY_VAL)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<JokeResp>() {
                     @Override
                     public void call(JokeResp jokeResp) {
-                        switch (jokeResp.showapi_res_code){
+                        switch (jokeResp.error_code){
                             case 0:
-                                mTasksView.showFirstPage(jokeResp.showapiResBody.maxResult,jokeResp.showapiResBody.allNum,jokeResp.showapiResBody.contentlist);
+                                mTasksView.showFirstPage(jokeResp.result.JokeList.size(),jokeResp.result.JokeList.size(),jokeResp.result.JokeList);
                                 break;
                             default:
-                                mTasksView.showPageErrMsg(jokeResp.showapi_res_code+"",jokeResp.showapi_res_error);
+                                mTasksView.showPageErrMsg(jokeResp.error_code+"",jokeResp.reason);
                                 break;
                         }
                     }
@@ -58,6 +58,7 @@ public class JokePresenter implements JokeContract.Presenter {
                     @Override
                     public void call(Throwable throwable) {
                         throwable.printStackTrace();
+                        mTasksView.showPageErrMsg("E500","服务器繁忙！");
                     }
                 });
     }
@@ -65,18 +66,18 @@ public class JokePresenter implements JokeContract.Presenter {
     @Override
     public void loadNextPage() {
         mPage++;
-        mJokeRepository.getJokeList(mPage)
+        mJokeRepository.getJokeContentText(mPage,20,JokeRepository.APIKEY_VAL)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<JokeResp>() {
                     @Override
                     public void call(JokeResp jokeResp) {
-                        switch (jokeResp.showapi_res_code){
+                        switch (jokeResp.error_code){
                             case 0:
-                                mTasksView.showNextPage(mPage,jokeResp.showapiResBody.maxResult,jokeResp.showapiResBody.allNum,jokeResp.showapiResBody.contentlist);
-                            break;
+                                mTasksView.showNextPage(mPage,jokeResp.result.JokeList.size(),jokeResp.result.JokeList.size(),jokeResp.result.JokeList);
+                                break;
                             default:
-                                mTasksView.showPageErrMsg(jokeResp.showapi_res_code+"",jokeResp.showapi_res_error);
+                                mTasksView.showPageErrMsg(jokeResp.error_code+"",jokeResp.reason);
                                 break;
                         }
                     }
@@ -84,9 +85,12 @@ public class JokePresenter implements JokeContract.Presenter {
                     @Override
                     public void call(Throwable throwable) {
                         throwable.printStackTrace();
+                        mTasksView.showPageErrMsg("E500","服务器繁忙！");
+
                     }
                 });
     }
+
 
 
 }

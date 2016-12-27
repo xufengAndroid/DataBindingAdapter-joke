@@ -12,15 +12,9 @@ import java.util.List;
  * Created by xufeng on 2016/12/2.
  */
 
-public class JokeResp extends BaseDto {
+public class JokeRandResp extends BaseDto {
 
     @Expose
     @SerializedName("result")
-    public Result result;
-
-    public static class Result {
-        @Expose
-        @SerializedName("data")
-        public List<JokeDto> JokeList;
-    }
+    public List<JokeDto> JokeList;
 }

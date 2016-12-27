@@ -23,9 +23,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="?attr/colorPrimary"
-                    android:minHeight="?attr/actionBarSize"
+                    android:minHeight="36dp"
                     android:theme="@style/Toolbar"
-                    app:navigationIcon="@mipmap/ic_launcher"
                     app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
                     <TextView
@@ -42,10 +41,10 @@
                     android:id="@+id/tab_joke_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/colorPrimary"
-                    app:tabIndicatorColor="#000000"
-                    app:tabSelectedTextColor="#555aaa"
-                    app:tabTextColor="#ffffff"
+                    android:background="@color/primary"
+                    app:tabIndicatorColor="@color/primary_dark"
+                    app:tabSelectedTextColor="@color/primary_light"
+                    app:tabTextColor="@color/primary_light"
                     />
             </android.support.design.widget.AppBarLayout>
 

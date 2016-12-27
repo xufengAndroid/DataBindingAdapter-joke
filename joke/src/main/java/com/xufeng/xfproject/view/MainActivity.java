@@ -11,6 +11,7 @@ import com.xufeng.xfproject.R;
 import com.xufeng.xfproject.base.BaseActivity;
 import com.xufeng.xfproject.databinding.MainActBinding;
 import com.xufeng.xfproject.manage.A;
+import com.xufeng.xfproject.presenter.JokeAllPresenter;
 import com.xufeng.xfproject.presenter.JokeImgPresenter;
 import com.xufeng.xfproject.presenter.JokePresenter;
 
@@ -30,33 +31,44 @@ import java.util.List;
  * databinding
  * http://blog.zhaiyifan.cn/2016/06/16/android-new-project-from-0-p7/
  * http://blog.csdn.net/marktheone/article/details/52044425
+ * http://www.jianshu.com/p/eb29c691d370
  * API
  * http://apistore.baidu.com/apiworks/servicedetail/864.html
+ * 上拉加载更多
+ * http://blog.csdn.net/sbsujjbcy/article/details/50112391
+ * http://www.jianshu.com/p/3bf125b4917d
  */
 public class MainActivity extends BaseActivity {
 
 
     MainActBinding mainActBinding;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mainActBinding = DataBindingUtil.setContentView(this,R.layout.main_act);
+        mainActBinding = DataBindingUtil.setContentView(this, R.layout.main_act);
 
         List<Fragment> list_fragment = new ArrayList<>();
         List<String> list_Title = new ArrayList<>();
         {
-            JokeFragment jokeFragment = new JokeFragment();
-            jokeFragment.setPresenter(new JokePresenter(A.getJokeRepository(),jokeFragment));
-            list_fragment.add(jokeFragment);
+            JokeAllFragment fragment = new JokeAllFragment();
+            fragment.setPresenter(new JokeAllPresenter(A.getJokeRandRepository(), fragment));
+            list_fragment.add(fragment);
+            list_Title.add("全部");
+        }
+        {
+            JokeFragment fragment = new JokeFragment();
+            fragment.setPresenter(new JokePresenter(A.getJokeRepository(), fragment));
+            list_fragment.add(fragment);
             list_Title.add("段子");
         }
         {
-            JokeImgFragment jokeImgFragment = new JokeImgFragment();
-            jokeImgFragment.setPresenter(new JokeImgPresenter(A.getJokeRepository(),jokeImgFragment));
-            list_fragment.add(jokeImgFragment);
+            JokeImgFragment fragment = new JokeImgFragment();
+            fragment.setPresenter(new JokeImgPresenter(A.getJokeRepository(), fragment));
+            list_fragment.add(fragment);
             list_Title.add("图片");
         }
-        mainActBinding.vpJokePager.setAdapter(new JokeTabAdapter(getSupportFragmentManager(),list_fragment,list_Title));
+        mainActBinding.vpJokePager.setAdapter(new JokeTabAdapter(getSupportFragmentManager(), list_fragment, list_Title));
         mainActBinding.tabJokeTitle.setupWithViewPager(mainActBinding.vpJokePager);
 
     }
@@ -89,7 +101,6 @@ public class MainActivity extends BaseActivity {
             return list_Title.get(position % list_Title.size());
         }
     }
-
 
 
 }

@@ -14,9 +14,6 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
-import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 
 /**
@@ -24,11 +21,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * http://blog.csdn.net/sky_pjf/article/details/51395594
  */
 
-public class HttpRetrofitManage<T> {
+public class HttpRetrofitManage {
     //服务器路径
-    private static final String API_SERVER = "http://apis.baidu.com/showapi_open_bus/";
+//    private static final String API_SERVER = "http://japi.juhe.cn/joke/";
     //测试服务器路径
-    private static final String API_SERVER_SANDBOX = "http://apis.baidu.com/showapi_open_bus/";
+//    private static final String API_SERVER_SANDBOX = "http://apis.baidu.com/showapi_open_bus/";
 
     //短缓存有效期为1秒钟
     public static final int CACHE_STALE_SHORT = 1;
@@ -42,23 +39,15 @@ public class HttpRetrofitManage<T> {
     //查询网络的Cache-Control设置，头部Cache-Control设为max-age=0时则不会使用缓存而请求服务器
     public static final String CACHE_CONTROL_NETWORK = "max-age=0";
 
-    private static OkHttpClient mOkHttpClient;
-    private final T mRepository;
+    private  OkHttpClient mOkHttpClient;
 
-    public static <T>T getRepository(Class<T> clz){
-        return new HttpRetrofitManage<T>(clz).mRepository;
+
+    public OkHttpClient getOkHttpClient() {
+        return mOkHttpClient;
     }
 
-    private HttpRetrofitManage(Class<T> clz) {
+    public HttpRetrofitManage() {
         initOkHttpClient();
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(API_SERVER)
-                .client(mOkHttpClient)
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-//                .addConverterFactory(new MyCustomFactory())
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        mRepository = retrofit.create(clz);
     }
 
     private void initOkHttpClient() {
@@ -67,7 +56,6 @@ public class HttpRetrofitManage<T> {
         if (mOkHttpClient == null) {
             synchronized (HttpRetrofitManage.class) {
                 if (mOkHttpClient == null) {
-
                     // 指定缓存路径,缓存大小100Mb
                     Cache cache = new Cache(new File(App.getContext().getCacheDir(), "HttpCache"),
                             1024 * 1024 * 100);
@@ -103,7 +91,5 @@ public class HttpRetrofitManage<T> {
             }
         }
     };
-
-
 
 }
