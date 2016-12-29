@@ -4,7 +4,7 @@ ext{
     targetSdkVersion = 25
     buildToolsVersion = '25.0.0'
 
-    versionCode = 1
+    versionCode = 100
     versionName = "1.0.0"
 
     useJack = false
