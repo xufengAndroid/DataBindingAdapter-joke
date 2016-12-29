@@ -56,7 +56,7 @@ ext{
             loadinglayout       :"com.github.czy1121:loadinglayout:1.0.1",
 
             //https://github.com/stfalcon-studio/FrescoImageViewer
-            frescoimageviewer   :"com.github.stfalcon:frescoimageviewer:0.4.0",
+            frescoimageviewer   :"com.github.stfalcon:frescoimageviewer:0.4.1",
 
     ]
 

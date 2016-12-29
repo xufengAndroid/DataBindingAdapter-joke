@@ -3,6 +3,12 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="activity"
+            type="android.support.v7.app.AppCompatActivity"/>
+    </data>
+
     <android.support.v4.widget.DrawerLayout
         android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
@@ -21,34 +27,26 @@
                 <android.support.v7.widget.Toolbar
                     android:id="@+id/toolbar"
                     android:layout_width="match_parent"
-                    android:layout_height="36dp"
+                    android:layout_height="46dp"
                     android:background="?attr/colorPrimary"
                     android:theme="@style/Toolbar"
-                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
-
+                    app:navigationIcon="@drawable/ic_break"
+                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                    app:back="@{activity}"
+                    >
                     <TextView
                         android:id="@+id/toolbar_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:maxLines="1"
-                        android:text="@string/app_name"
+                        android:text="关于"
                         android:textSize="20sp"/>
                 </android.support.v7.widget.Toolbar>
-
-                <android.support.design.widget.TabLayout
-                    android:id="@+id/tab_joke_title"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/primary"
-                    app:tabIndicatorColor="@color/primary_dark"
-                    app:tabSelectedTextColor="@color/primary_light"
-                    app:tabTextColor="@color/primary_light"
-                    />
             </android.support.design.widget.AppBarLayout>
 
-            <android.support.v4.view.ViewPager
-                android:id="@+id/vp_joke_pager"
+            <FrameLayout
+                android:id="@+id/framelayout"
                 android:layout_width="fill_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"

@@ -1,11 +1,17 @@
 package com.xufeng.xfproject.view;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.xufeng.xfproject.R;
 import com.xufeng.xfproject.base.BaseActivity;
@@ -47,6 +53,21 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mainActBinding = DataBindingUtil.setContentView(this, R.layout.main_act);
+
+        mainActBinding.toolbar.inflateMenu(R.menu.drawer_actions);
+        mainActBinding.toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                int menuItemId = item.getItemId();
+                switch (menuItemId){
+                    case R.id.menu_about:
+                        startActivity(new Intent(getContext(),AboutActivity.class));
+                        break;
+                }
+                return true;
+            }
+        });
+
 
         List<Fragment> list_fragment = new ArrayList<>();
         List<String> list_Title = new ArrayList<>();
@@ -102,5 +123,21 @@ public class MainActivity extends BaseActivity {
         }
     }
 
+    private long firstTime;
+    @Override
+    public void onBackPressed() {
+
+        long secondTime = System.currentTimeMillis();
+        if (secondTime - firstTime > 2000) {
+            Snackbar sb = Snackbar.make(getRootView(), "再按一次退出", Snackbar.LENGTH_SHORT);
+            sb.getView().setBackgroundColor(ContextCompat.getColor(getContext(), R.color.accent));
+            TextView textView = (TextView) sb.getView().findViewById(android.support.design.R.id.snackbar_text);
+            textView.setTextColor(ContextCompat.getColor(getContext(), R.color.primary_text));
+            sb.show();
+            firstTime = secondTime;
+        } else {
+            finish();
+        }
+    }
 
 }

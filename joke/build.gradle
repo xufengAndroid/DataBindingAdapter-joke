@@ -52,9 +52,12 @@ android {
 
 }
 
+repositories { flatDir { dirs 'libs' } }
+
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile project(':databindingadapter')
+    compile project(':frescoimageviewer')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
@@ -74,6 +77,6 @@ dependencies {
     compile rootProject.ext.dependencies["utils"]
     compile rootProject.ext.dependencies["freshlayout"]
     compile rootProject.ext.dependencies["loadinglayout"]
-    compile rootProject.ext.dependencies["frescoimageviewer"]
+//    compile rootProject.ext.dependencies["frescoimageviewer"]
 
 }

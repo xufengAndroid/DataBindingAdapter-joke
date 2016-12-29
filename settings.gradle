@@ -1,1 +1,1 @@
-include ':joke', ':databindingadapter'
+include ':joke', ':databindingadapter', ':frescoimageviewer'

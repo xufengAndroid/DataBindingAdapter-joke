@@ -19,7 +19,10 @@ package com.xufeng.xfproject.manage;
 import android.databinding.BindingAdapter;
 import android.graphics.PointF;
 import android.net.Uri;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.interfaces.DraweeController;
@@ -30,7 +33,7 @@ public class ViewBindingAdapter {
     @BindingAdapter({"url"})
     public static void setUrl(SimpleDraweeView view, String url) {
         Uri imageUri = Uri.parse(url);
-        PointF focusPoint = new PointF(0f,0f);
+        PointF focusPoint = new PointF(0f, 0f);
         view.getHierarchy().setActualImageFocusPoint(focusPoint);
         //创建DraweeController
         DraweeController controller = Fresco.newDraweeControllerBuilder()
@@ -45,6 +48,16 @@ public class ViewBindingAdapter {
                 //构建
                 .build();
         view.setController(controller);
+    }
+
+    @BindingAdapter({"back"})
+    public static void setBack(final Toolbar view, final AppCompatActivity activity) {
+        view.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activity.finish();
+            }
+        });
     }
 
     @BindingAdapter("layoutManager")

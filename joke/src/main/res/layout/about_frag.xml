@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+       <variable
+           name="url"
+           type="java.lang.String"/>
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/simpledraweeview"
+            android:layout_width="200dp"
+            android:layout_height="190dp"
+            android:layout_marginTop="160dp"
+            android:layout_centerHorizontal="true"
+            app:url="@{url}"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" 笑一日，少一日！"
+            android:layout_marginTop="10dp"
+            android:textSize="24sp"
+            android:layout_below="@id/simpledraweeview"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/textView2"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="项目源码：https://github.com/xufengAndroid/XfProject"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="13dp"
+            android:layout_marginRight="13dp"
+            android:layout_marginBottom="6dp"
+            android:textSize="10dp"
+            />
+
+    </RelativeLayout>
+</layout>

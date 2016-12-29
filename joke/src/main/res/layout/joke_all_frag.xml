@@ -4,6 +4,7 @@
         xmlns:tools="http://schemas.android.com/tools">
     <data>
         <import type="android.view.View"/>
+
         <variable
             name="presenter"
             type="com.xufeng.xfproject.contract.JokeContract.Presenter"/>
