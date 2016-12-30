@@ -23,6 +23,7 @@ public class AboutFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         ViewDataBinding inflate = DataBindingUtil.inflate(inflater, R.layout.about_frag, container, false);
         inflate.setVariable(BR.url,"res://com.xufeng.xfproject/"+R.drawable.ic_joke);
+        inflate.setVariable(BR.webUrl,"https://github.com/xufengAndroid/XfProject");
         return inflate.getRoot();
     }
 

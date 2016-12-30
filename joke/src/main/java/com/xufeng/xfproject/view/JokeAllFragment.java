@@ -47,7 +47,6 @@ public class JokeAllFragment extends BaseFragment implements JokeContract.View {
     @Override
     public void onStart() {
         super.onStart();
-        mPresenter.start();
     }
 
     @Override
@@ -130,6 +129,7 @@ public class JokeAllFragment extends BaseFragment implements JokeContract.View {
                 mPresenter.loadFirstPage();
             }
         });
+        mPresenter.start();
     }
 
     @Override
