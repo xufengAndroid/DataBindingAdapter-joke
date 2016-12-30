@@ -1,4 +1,4 @@
-# XfProject
+# databindingAdapter-joke
 ### Joke（笑话app）
 项目采用mvp+databinding模式开发。
 
