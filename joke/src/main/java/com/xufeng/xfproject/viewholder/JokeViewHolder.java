@@ -20,7 +20,6 @@ public class JokeViewHolder extends BindingViewHolder<JokeDto> {
 
     @Override
     protected void updateView(Context context, JokeDto object, int position) {
-//        object.content = "内容："+ object.content;
         getBinding().setVariable(BR.joke, object);
     }
 
