@@ -9,9 +9,6 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
-/**
- * Created by xufeng on 2016/12/14.
- */
 
 public class BindingRecyclerViewAdapter<T> extends RecyclerView.Adapter<BindingViewHolder> implements BindingAdapter<T> {
 

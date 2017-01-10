@@ -128,8 +128,9 @@ public class JokeFragment extends BaseFragment implements JokeContract.View {
         Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
         mBinding.refreshLayout.finishRefreshing();
         mBinding.refreshLayout.finishLoadmore();
-        mBinding.loadinglayout.showError();
-    }
+        if(mAdapter.getObjects().size()==0){
+            mBinding.loadinglayout.showError();
+        }    }
 
 
 }

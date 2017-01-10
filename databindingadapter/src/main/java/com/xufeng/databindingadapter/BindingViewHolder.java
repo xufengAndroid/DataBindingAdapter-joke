@@ -22,10 +22,7 @@ import android.view.View;
 
 import java.lang.ref.WeakReference;
 
-/**
- * @author markzhai on 16/3/18
- * @version 1.0.0
- */
+
 public abstract class BindingViewHolder<T> extends RecyclerView.ViewHolder {
 
     private ViewDataBinding mBinding;
